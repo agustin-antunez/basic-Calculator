@@ -1,3 +1,11 @@
-body {
-    background-color: rgb(228, 225, 49);
-};
+@import url('./styles.css');
+
+:root {
+    --bgColor: #c38410;
+    --DisplayBgColor: #333;
+    --displayFontColor: #F277BB;
+    --calcBgColor: #F2A30F;
+    --btnColor: #F2B90C;
+    --btnColorFont: #398CBF;
+    --btnShadow: #76500a;
+}

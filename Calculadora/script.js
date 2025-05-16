@@ -40,7 +40,7 @@ equal.addEventListener("click", ()=>{
             display.value = "Syntax Error";
             setTimeout(() => {
                 display.value = "";
-            }, 1000);
+            }, 2000);
             const errorAudio = new Audio('./audio/dubError.mp3');
             errorAudio.playbackRate = 1.2;
             errorAudio.play();

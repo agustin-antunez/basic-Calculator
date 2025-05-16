@@ -1,3 +1,12 @@
-body {
-    background-color: rgb(15, 90, 230);
+@import url('./styles.css');
+
+:root {
+    --bgColor: #9c5f19;
+    --DisplayBgColor: #333;
+    --displayFontColor: #BF2A13;
+    --calcBgColor: #F2C185;
+    --btnColor: #F2D4AA;
+    --btnColorFont: #BD731E;
+    --btnShadow: #9e8b6f;
+    --font: 'Roboto';
 }
