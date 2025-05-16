@@ -3,6 +3,8 @@ const equal = document.getElementById("equal");
 const clear = document.getElementById("clear");
 const resultado = document.getElementById("resultado");
 const buttons = document.querySelectorAll(".btn");
+const styles = document.getElementById("styles");
+const changeStyles = document.getElementById("changeStyles");
 
 
 //EXPRESION REGEX PARA QUE NO HAYA REPETICIONES DE SIMBOLOS EN LA CALCULADORA
@@ -12,19 +14,20 @@ let valor = 0;
 //EVENTO DEL BOTON IGUAL
 equal.addEventListener("click", ()=>{
     let displayValue = display.value.trim();
+
         //VERIFICA SI LA OPERACION ESTA SIENDO DIVIDIDA POR 0
         if(displayValue.includes("/0")){
             display.value = "Zero is not divisible";
             setTimeout(() => {
                 display.value = '';
-            }, 1000);
+            }, 2000);
             const audioError2 = new Audio('./audio/winError.mp3');
             audioError2.playbackRate = 1.2;
             audioError2.play();
             throw new Error("No se puede dividir por 0");
         }
         //Verificar si despues de un numero hay un simbolo (bien), si despues de un simbolo hay otro simbolo (mal)
-        else if (regexCalc.test(displayValue)){
+        else if (regexCalc.test(displayValue) && displayValue !== ""){
             valor = eval(displayValue);
             resultado.textContent = valor;
             display.value = "";
@@ -35,6 +38,9 @@ equal.addEventListener("click", ()=>{
         }
         else {
             display.value = "Syntax Error";
+            setTimeout(() => {
+                display.value = "";
+            }, 1000);
             const errorAudio = new Audio('./audio/dubError.mp3');
             errorAudio.playbackRate = 1.2;
             errorAudio.play();
@@ -46,18 +52,15 @@ equal.addEventListener("click", ()=>{
 
 //EVENTO DEL BOTON CLEAR ALL
 
-function clearAll() {
-    clear.addEventListener("click",function(e){
-    e.preventDefault();
-    display.value = "";
-    valor = 0;
-    resultado.textContent = valor;
-    const clearAudio = new Audio('./audio/clear.mp3');
-    clearAudio.play();
+clear.addEventListener("click",function(e){
+e.preventDefault();
+display.value = "";
+valor = 0;
+resultado.textContent = valor;
+const clearAudio = new Audio('./audio/clear.mp3');
+clearAudio.play();
 });
-};
 
-clearAll();
 
 //EVENTO DE LOS BOTONES CON ESTILO 
 buttons.forEach(btn=>{
@@ -77,3 +80,13 @@ buttons.forEach(btn=>{
 
     });
 
+//EVENTO PARA CAMBIAR LA RUTA DE ESTILOS 
+
+
+changeStyles.addEventListener("change", function(e) {
+    e.preventDefault();
+
+    const arrayStyles = ["./css/styles.css","./css/yellow.css", "./css/oscuro.css", "./css/vintage.css"];
+    let indice=e.target.value;
+    styles.href = arrayStyles[indice];
+});
