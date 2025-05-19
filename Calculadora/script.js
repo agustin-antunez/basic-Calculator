@@ -5,6 +5,7 @@ const resultado = document.getElementById("resultado");
 const buttons = document.querySelectorAll(".btn");
 const styles = document.getElementById("styles");
 const changeStyles = document.getElementById("changeStyles");
+const changeBackground = document.getElementById('changeBg');
 const historial = document.getElementById("history");
 const historialContain = document.querySelector(".historyContainer");
 const historyRegister = document.querySelector(".history__register");
@@ -110,4 +111,22 @@ historialContain.classList.add('hidden');
 
 historial.addEventListener('click', ()=>{
     historialContain.classList.toggle("hidden");
+});
+
+//EVENTO PARA CAMBIAR EL FONDO 
+
+changeBackground.addEventListener('change', function(e){
+    const arrayBackground = ['var(--bgColor)','./img/ps-background.jpg','./img/galaxy.jpg', './img/mountains.jpg', './img/WorldCup.jpg']
+    let i = parseInt(e.target.value);
+    if(i === 0){
+        document.body.style.backgroundColor = 'var(--bgColor)';
+        document.body.style.backgroundImage = '';
+    }
+    else if (i>0){
+         document.body.style.backgroundImage = `url(${arrayBackground[i]})`;
+         document.body.style.backgroundPosition = 'center';
+         document.body.style.backgroundColor = '';
+    }
+
+
 });
