@@ -1,0 +1,52 @@
+@import url('./styles.css');
+
+:root {
+    --bgColor: #343e47;
+    --DisplayBgColor: #171F26;
+    --displayFontColor: #ee753d;
+    --calcBgColor: #3b4e59;
+    --btnColor: #273035;
+    --btnColorFont: #ffffff;
+    --btnShadow: #2a283f;
+    --font: 'Roboto';
+}
+
+.calculator {
+    border-radius: 0px;
+    padding: 0px;
+}
+
+.displayContainer {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 150px;
+    border-radius: 0px;
+    padding: 20px;
+}
+
+#display {
+    color: #fff;
+}
+
+.buttons {
+    height: 100%;
+    width: 100%;
+    gap: 0px;
+}
+
+.btn--operator, #equal {
+    color: #ee753d;
+}
+
+.btn, #clear, #equal {
+    border-radius: 0px;
+    border: 1px solid #1f282e;
+    box-shadow: none;
+}
+
+#clear {
+    background-color: #e03832;
+    color: #fff;
+}
+

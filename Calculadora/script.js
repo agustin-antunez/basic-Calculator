@@ -5,6 +5,9 @@ const resultado = document.getElementById("resultado");
 const buttons = document.querySelectorAll(".btn");
 const styles = document.getElementById("styles");
 const changeStyles = document.getElementById("changeStyles");
+const historial = document.getElementById("history");
+const historialContain = document.querySelector(".historyContainer");
+const historyRegister = document.querySelector(".history__register");
 
 
 //EXPRESION REGEX PARA QUE NO HAYA REPETICIONES DE SIMBOLOS EN LA CALCULADORA
@@ -15,39 +18,51 @@ let valor = 0;
 equal.addEventListener("click", ()=>{
     let displayValue = display.value.trim();
 
+    const errorAudio = new Audio('./audio/dubError.mp3');
         //VERIFICA SI LA OPERACION ESTA SIENDO DIVIDIDA POR 0
         if(displayValue.includes("/0")){
             display.value = "Zero is not divisible";
+            display.style.color = '#e03832';
             setTimeout(() => {
                 display.value = '';
+                display.style.color = '';
             }, 2000);
-            const audioError2 = new Audio('./audio/winError.mp3');
-            audioError2.playbackRate = 1.2;
-            audioError2.play();
+            errorAudio.playbackRate = 1.2;
+            errorAudio.play();
             throw new Error("No se puede dividir por 0");
+    
         }
         //Verificar si despues de un numero hay un simbolo (bien), si despues de un simbolo hay otro simbolo (mal)
         else if (regexCalc.test(displayValue) && displayValue !== ""){
+            let historialArray = JSON.parse(sessionStorage.getItem("historialArray")) || [];
             valor = eval(displayValue);
             resultado.textContent = valor;
             display.value = "";
             const audioSucess = new Audio('./audio/sucess.mp3');
              audioSucess.playbackRate = 1.2;
             audioSucess.play();
-            console.log(resultado);
+            const data = `${displayValue} = ${valor}`;
+            historialArray.push(data);
+            const p = document.createElement("p");
+            p.textContent = data;
+            historyRegister.appendChild(p);
+            console.log(`Se guardo esto: ${data}`);
         }
         else {
             display.value = "Syntax Error";
+            display.style.color = '#e03832';
             setTimeout(() => {
                 display.value = "";
+                display.style.color = '';
             }, 2000);
-            const errorAudio = new Audio('./audio/dubError.mp3');
+            
             errorAudio.playbackRate = 1.2;
             errorAudio.play();
             
             throw new Error("Error de sintaxis");
            
-        };
+        }
+
 });
 
 //EVENTO DEL BOTON CLEAR ALL
@@ -81,12 +96,18 @@ buttons.forEach(btn=>{
     });
 
 //EVENTO PARA CAMBIAR LA RUTA DE ESTILOS 
-
-
 changeStyles.addEventListener("change", function(e) {
     e.preventDefault();
 
-    const arrayStyles = ["./css/styles.css","./css/yellow.css", "./css/oscuro.css", "./css/vintage.css"];
+    const arrayStyles = ["./css/styles.css", "./css/moderno.css", "./css/vintage.css"];
     let indice=e.target.value;
     styles.href = arrayStyles[indice];
+});
+
+//EVENTO PARA LA APARACION DEL HISTORIAL
+
+historialContain.classList.add('hidden');
+
+historial.addEventListener('click', ()=>{
+    historialContain.classList.toggle("hidden");
 });

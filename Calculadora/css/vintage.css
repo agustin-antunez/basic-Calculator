@@ -1,12 +1,58 @@
 @import url('./styles.css');
 
 :root {
-    --bgColor: #9c5f19;
+    --bgColor: #979088;
     --DisplayBgColor: #333;
-    --displayFontColor: #BF2A13;
-    --calcBgColor: #F2C185;
-    --btnColor: #F2D4AA;
-    --btnColorFont: #BD731E;
-    --btnShadow: #9e8b6f;
-    --font: 'Roboto';
+    --displayFontColor: #F2786D;
+    --calcBgColor: #d7cdc3;
+    --btnColor: #ffffff;
+    --btnColorFont: #333;
+    --btnShadow: #2a4237;
+    --font: 'Jersey 10';
+}
+
+* {
+    font-weight: 100;
+}
+
+h1 {
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.calculator {
+    font-size: 25px;
+    border-radius: 5px;
+}
+
+#display, #resultado {
+    font-size: 35px;
+}
+
+.btn--operator, #equal {
+    background-color: #176ff3;
+    color: var(--btnColor);
+}
+
+.buttons {
+    height: 390px;
+    border: 2px solid #000000;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn, #clear, #equal {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+}
+
+#clear {
+    background-color: #c53224;
+    color: var(--btnColor);
+}
+
+.config > select {
+    font-size: 20px;
 }

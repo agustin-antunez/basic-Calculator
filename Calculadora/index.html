@@ -5,47 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="styles" rel="stylesheet" href="./css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7af2b157c5.js" crossorigin="anonymous"></script>
     <title>Calculadora</title>
 </head>
 <body>
-    <section class="calculator">
-        <h1>Casio</h1>
-        <div class="displayContainer">
-            <input type="text" name="operacion" id="display" readonly>
-            <div id="resultado">0</div>
+    <aside>
+        <label for="history" id="history"><i class="fa-solid fa-clock-rotate-left"></i></label>
+        <section class="historyContainer">
+            <h2 class="history__title">Historial</h2>
+            <div class="history__register">
+
+            </div>
+        </section>
+    </aside>
+    <section class="calculatorContainer">
+        <div class="calculator">
+            <div class="displayContainer">
+                <input type="text" name="operacion" id="display" readonly>
+                <div id="resultado">0</div>
+            </div>
+            <div class="buttons">
+                <button class="btn" value="1">1</button>
+                <button class="btn" value="2">2</button>
+                <button class="btn" value="3">3</button>
+                <button class="btn btn--operator" value="+">+</button>
+                <button class="btn" value="4">4</button>
+                <button class="btn" value="5">5</button>
+                <button class="btn" value="6">6</button>
+                <button class="btn btn--operator" value="-">-</button>
+                <button class="btn" value="7">7</button>
+                <button class="btn" value="8">8</button>
+                <button class="btn" value="9">9</button>
+                <button class="btn btn--operator" value="*">*</button>
+                <button id="clear">AC</button>
+                <button class="btn" value="0">0</button>
+                <button type="submit" class="btn" id="equal">=</button>
+                <button class="btn btn--operator" value="/">/</button>
+            </div>
         </div>
-        <div class="buttons">
-            <button class="btn" value="1">1</button>
-            <button class="btn" value="2">2</button>
-            <button class="btn" value="3">3</button>
-            <button class="btn" value="+">+</button>
-            <button class="btn" value="4">4</button>
-            <button class="btn" value="5">5</button>
-            <button class="btn" value="6">6</button>
-            <button class="btn" value="-">-</button>
-            <button class="btn" value="7">7</button>
-            <button class="btn" value="8">8</button>
-            <button class="btn" value="9">9</button>
-            <button class="btn" value="*">*</button>
-            <button id="clear">AC</button>
-            <button class="btn" value="0">0</button>
-            <button type="submit" class="btn" id="equal">=</button>
-            <button class="btn" value="/">/</button>
-        </div>
-    </section>
-    <section class="config">
+        <div class="config">
         <select name="styles" id="changeStyles">
             <option value="0">Default</option>
-            <option value="1">Amarillo</option>
-            <option value="2">oscuro</option>
-            <option value="3">Vintage</option>
+            <option value="1">Moderno</option>
+            <option value="2">Vintage</option>
         </select>
-        
-        
+        <select name="background" id="changeBg">
+            <option value="0">Default</option>
+            <option value="1">PS background</option>
+        </select>
+    </div>
     </section>
-    
-    
-
     <script src='./script.js'></script>
 </body>
 </html>
