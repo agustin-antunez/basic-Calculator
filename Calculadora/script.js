@@ -10,7 +10,6 @@ const historial = document.getElementById("history");
 const historialContain = document.querySelector(".historyContainer");
 const historyRegister = document.querySelector(".history__register");
 
-
 //EXPRESION REGEX PARA QUE NO HAYA REPETICIONES DE SIMBOLOS EN LA CALCULADORA
 let regexCalc = /^-?(\d+(\.\d+)?)([+\-*/](\d+(\.\d+)?))*$/;
 let valor = 0;
@@ -20,8 +19,20 @@ equal.addEventListener("click", ()=>{
     let displayValue = display.value.trim();
 
     const errorAudio = new Audio('./audio/dubError.mp3');
+
+        if(displayValue === ""){
+            display.value = "Write Something >:(";
+            display.style.color = '#e03832';
+            setTimeout(() => {
+                display.value = "";
+                display.style.color = '';
+            }, 2000);
+            errorAudio.playbackRate = 1.2;
+            errorAudio.play();
+            throw new Error("No hay nada escrito");
+        }
         //VERIFICA SI LA OPERACION ESTA SIENDO DIVIDIDA POR 0
-        if(displayValue.includes("/0")){
+        else if(displayValue.includes("/0")){
             display.value = "Zero is not divisible";
             display.style.color = '#e03832';
             setTimeout(() => {
@@ -30,8 +41,7 @@ equal.addEventListener("click", ()=>{
             }, 2000);
             errorAudio.playbackRate = 1.2;
             errorAudio.play();
-            throw new Error("No se puede dividir por 0");
-    
+            throw new Error("No se puede dividir por 0");  
         }
         //Verificar si despues de un numero hay un simbolo (bien), si despues de un simbolo hay otro simbolo (mal)
         else if (regexCalc.test(displayValue) && displayValue !== ""){
@@ -60,10 +70,8 @@ equal.addEventListener("click", ()=>{
             errorAudio.playbackRate = 1.2;
             errorAudio.play();
             
-            throw new Error("Error de sintaxis");
-           
+            throw new Error("Error de sintaxis");  
         }
-
 });
 
 //EVENTO DEL BOTON CLEAR ALL
@@ -76,7 +84,6 @@ resultado.textContent = valor;
 const clearAudio = new Audio('./audio/clear.mp3');
 clearAudio.play();
 });
-
 
 //EVENTO DE LOS BOTONES CON ESTILO 
 buttons.forEach(btn=>{
@@ -116,17 +123,14 @@ historial.addEventListener('click', ()=>{
 //EVENTO PARA CAMBIAR EL FONDO 
 
 changeBackground.addEventListener('change', function(e){
-    const arrayBackground = ['var(--bgColor)','./img/ps-background.jpg','./img/galaxy.jpg', './img/mountains.jpg', './img/WorldCup.jpg']
+    const arrayBackground = ['var(--bgColor)','./img/abstract.jpg','./img/galaxy.jpg', './img/mountains.jpg', './img/WorldCup.jpg']
     let i = parseInt(e.target.value);
     if(i === 0){
         document.body.style.backgroundColor = 'var(--bgColor)';
         document.body.style.backgroundImage = '';
     }
     else if (i>0){
-         document.body.style.backgroundImage = `url(${arrayBackground[i]})`;
-         document.body.style.backgroundPosition = 'center';
+         document.body.style.backgroundImage = `linear-gradient(#0001, #000),url(${arrayBackground[i]})`;
          document.body.style.backgroundColor = '';
     }
-
-
 });
